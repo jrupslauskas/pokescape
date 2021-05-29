@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path="/pokemon")
@@ -35,7 +36,18 @@ public class PokemonController {
                 .filter(pokemon -> pokemon.getPokedexEntry() == Integer.parseInt(pokedexId))
                 .findFirst()
                 .orElseThrow(() -> new Exception());
-            }
+    }
+
+    // Get all pokemon of type
+    @GetMapping(path="/type/{type}")
+    @ResponseBody
+    public List<Pokemon> getPokemonByType (@PathVariable String type) throws Exception {
+        List<Pokemon> pokemonList = pokeRepository.findAll();
+
+        return pokemonList.stream()
+                .filter(pokemon -> pokemon.getType().toLowerCase().equals(type.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 
     // Add a single pokemon
     @PostMapping(path="/add")
