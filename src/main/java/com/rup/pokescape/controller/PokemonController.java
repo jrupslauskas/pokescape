@@ -33,7 +33,7 @@ public class PokemonController {
         List<Pokemon> pokemonList = pokeRepository.findAll();
         // Put inside try catch
         return pokemonList.stream()
-                .filter(pokemon -> pokemon.getPokedexEntry() == Integer.parseInt(pokedexId))
+                .filter(pokemon -> pokemon.getPokedexEntry().equals(Integer.parseInt(pokedexId)))
                 .findFirst()
                 .orElseThrow(() -> new Exception());
     }
@@ -45,7 +45,7 @@ public class PokemonController {
         List<Pokemon> pokemonList = pokeRepository.findAll();
 
         return pokemonList.stream()
-                .filter(pokemon -> pokemon.getType().toLowerCase().equals(type.toLowerCase()))
+                .filter(pokemon -> pokemon.getType().equalsIgnoreCase(type))
                 .collect(Collectors.toList());
     }
 
