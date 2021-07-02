@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping(path="/pokemon")
+@RequestMapping(path="/data")
 public class PokemonController {
     @Autowired
     private PokeRepository pokeRepository;
 
-    @GetMapping("/")
-    public @ResponseBody String index() {
-        return "Welcome to Pokescape!";
+    @GetMapping("")
+    public @ResponseBody
+    String index() {
+        return "<h1>PokeList</h1><ol><li>Bulbasaur</li><li>Ivysaur</li><li>Venasaur</li></ol>";
     }
 
     // Get list of all pokemon

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Collection;
 
 @Entity
 public class Pokemon {
@@ -47,11 +48,10 @@ public class Pokemon {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
+    public String getType() { return type; }
 
     public void setType(String type) {
         this.type = type;
     }
+
 }
